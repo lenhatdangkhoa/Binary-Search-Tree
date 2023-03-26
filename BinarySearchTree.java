@@ -1,20 +1,20 @@
 
 
-public class BinarySearchTree {
+public class BinarySearchTree<T extends Comparable<T>> {
     NodeType<T> root;
 
     public BinarySearchTree() {
-        root.info = null;  
+        root.info = null;
     }
-
+    /*
     public void insert(T key) {
         NodeType<T> placeholder = new NodeType<>(root);
         if (root.info == null) { // adding for empty tree
-            root.info == key.info;
+            root.info = key.info;
         } else if (key.compareTo(root) == 0) { // checking for dupe on root node
             return;
         } else {
-            while (key.compareTo(placeholder.info.left) || key.compareTo(placeholder.info.right) == (1 || -1) {
+            while (key.compareTo(placeholder.info.left) || key.compareTo(placeholder.info.right) == (1 || -1)) {
                 if (key.compareTo(placeholder.info) == 0) {
                     return;
                 }
@@ -25,7 +25,7 @@ public class BinarySearchTree {
                     placeholder = placeholder.left;
                 } else if (key.compareTo(placeholder.info.right) == 1 || placeholder.right == null) {
                     if (placeholder.right == null) {
-                        placeholder.right,info = key;
+                        placeholder.right.info = key;
                     }
                     placeholder = placeholder.right;
                 }
@@ -38,7 +38,7 @@ public class BinarySearchTree {
     public boolean search(T item) {
         if (root.info == null) {
             return false;
-        } 
+        }
         while (root.info != null) {
             if (item.compareTo(root.right) == 0 || item.compareTo(root.left) == 0) {
                 return true;
@@ -50,4 +50,7 @@ public class BinarySearchTree {
         }
         // reset root to top of tree here!
     } // serach
+    */
+
+    public void inOrder(){}
 }
