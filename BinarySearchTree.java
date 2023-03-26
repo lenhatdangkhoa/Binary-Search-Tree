@@ -31,5 +31,23 @@ public class BinarySearchTree {
                 }
             }
         }
-    }
+    } // insert
+
+    public void delete(T key) {} // key
+
+    public boolean search(T item) {
+        if (root.info == null) {
+            return false;
+        } 
+        while (root.info != null) {
+            if (item.compareTo(root.right) == 0 || item.compareTo(root.left) == 0) {
+                return true;
+            } else if (item.compareTo(root.right) == 1 || item.compareTo(root.left) == -1) {
+                search(root);
+            } else {
+                return false;
+            }
+        }
+        // reset root to top of tree here!
+    } // serach
 }
