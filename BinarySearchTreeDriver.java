@@ -11,6 +11,7 @@ public class BinarySearchTreeDriver {
      * @param args command line arguments
      */
     public static void main(String[] args) {
+        /*
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter list type (i - int, d - double, s - string): ");
         String type = scan.nextLine();
@@ -42,6 +43,30 @@ public class BinarySearchTreeDriver {
             System.out.print("Enter a command: ");
             command = scan.nextLine();
         } // while
+        */
+        NodeType<Integer> root = new NodeType<>();
+        root.info = 3;
+        root.left = new NodeType<Integer>();
+        root.left.info = 2;
+        root.right = new NodeType<Integer>();
+        root.right.info = 6;
+        root.right.left = new NodeType<Integer>();
+        root.right.left.info = 5;
+        root.right.right = new NodeType<Integer>();
+        root.right.right.info = 8;
+        /*
+        System.out.println(root.info);
+        System.out.println(root.left.info);
+        System.out.println(root.right.info);
+        System.out.println(root.right.left.info);
+        System.out.println(root.right.right.info);
+        */
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        tree.root = root;
+        tree.inOrder(tree.root);
+        System.out.println();
+
+
     } // main
 
 
