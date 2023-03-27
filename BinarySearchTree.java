@@ -4,7 +4,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
     NodeType<T> root;
 
     public BinarySearchTree() {
-        root.info = null;
+        root = new NodeType<T>();
     }
     /*
     public void insert(T key) {
@@ -29,6 +29,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
                     }
                     placeholder = placeholder.right;
                 }
+
             }
         }
     } // insert
@@ -52,5 +53,19 @@ public class BinarySearchTree<T extends Comparable<T>> {
     } // serach
     */
 
-    public void inOrder(){}
+    public void inOrder(NodeType<T> root){
+        if (root.left == null) {
+            System.out.print(root.info + " ");
+            return;
+        } else {
+            inOrder(root.left);
+        }
+        System.out.print(root.info + " ");
+        if (root.right == null) {
+            System.out.print(root.info + " ");
+            return;
+        } else {
+            inOrder(root.right);
+        }
+    }
 }
