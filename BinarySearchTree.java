@@ -6,7 +6,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
     public BinarySearchTree() {
         root.info = null;
     }
-    /*
+
     public void insert(T key) {
         NodeType<T> placeholder = new NodeType<>(root);
         if (root.info == null) { // adding for empty tree
@@ -14,8 +14,8 @@ public class BinarySearchTree<T extends Comparable<T>> {
         } else if (key.compareTo(root) == 0) { // checking for dupe on root node
             return;
         } else {
-            while (key.compareTo(placeholder.info.left) || key.compareTo(placeholder.info.right) == (1 || -1)) {
-                if (key.compareTo(placeholder.info) == 0) {
+            while (key.compareTo(placeholder.info.left) == -1 || key.compareTo(placeholder.info.right) == 1) {
+                if (key.compareTo(placeholder.info) == 0) { // checking dupe within tree
                     return;
                 }
                 if (key.compareTo(placeholder.info.left) == -1 || placeholder.left == null) {
@@ -31,8 +31,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
                 }
             }
         }
+        placeholder = root;
     } // insert
-
+    /*
     public void delete(T key) {} // key
 
     public boolean search(T item) {
