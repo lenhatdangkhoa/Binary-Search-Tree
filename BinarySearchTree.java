@@ -3,6 +3,7 @@
 public class BinarySearchTree<T extends Comparable<T>> {
     NodeType<T> root;
     NodeType<T> currentPos;
+    boolean checker;
     public BinarySearchTree() {
         root = new NodeType<T>();
         currentPos = root;
@@ -31,28 +32,39 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return;
     }
 
-    /*
+    /* 
     public void delete(T key) {} // key
-
-
-    public boolean search(T item) {
-        if (root.info == null) {
-            return false;
-        }
-        while (root.info != null) {
-            if (item.compareTo(root.right) == 0 || item.compareTo(root.left) == 0) {
-                return true;
-            } else if (item.compareTo(root.right) == 1 || item.compareTo(root.left) == -1) {
-                search(root);
-            } else {
-                return false;
-            }
-        }
-        // reset root to top of tree here!
-    } // serach
     */
 
-    public void inOrder(NodeType<T> root){
+    public boolean search(T item) {
+    if (root.info == null) {
+        return checker = false;
+    }
+    if (item.compareTo(currentPos.info) > 0) {
+        currentPos = currentPos.right;
+        if (currentPos == null) {
+            currentPos = root;
+            return checker = false;
+        } else {
+        search(item);
+        }
+    } if (item.compareTo(currentPos.info) < 0) {
+        currentPos = currentPos.left;
+        if (currentPos == null) {
+            currentPos = root;
+            return checker = false;
+        } else {
+        search(item);
+        }
+    } if (item.compareTo(currentPos.info) == 0) {
+        currentPos = root;
+        return checker = true;
+    }
+    System.out.println(checker); // helps visualize the output
+    return checker;
+} // reset root to top of tree here!
+
+    public void inOrder(NodeType<T> root) {
         if (root == null) return;
         inOrder(root.left);
         System.out.print(root.info + " ");

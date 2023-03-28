@@ -72,6 +72,7 @@ public class BinarySearchTreeDriver {
         tree.insert(4);
         //tree.insert(0);
         tree.inOrder(tree.root);
+        tree.search(2);
         //System.out.println(tree.root.info);
         //System.out.println(tree.root.right.info);
         //System.out.println(tree.root.left.info);
