@@ -2,38 +2,35 @@
 
 public class BinarySearchTree<T extends Comparable<T>> {
     NodeType<T> root;
-
+    NodeType<T> currentPos;
     public BinarySearchTree() {
         root = new NodeType<T>();
+        currentPos = root;
     }
 
     public void insert(T key) {
-        NodeType<T> placeholder = new NodeType<>(root);
-        if (root.info == null) { // adding for empty tree
-            root.info = key.info;
-        } else if (key.compareTo(root) == 0) { // checking for dupe on root node
-            return;
-        } else {
-            while (key.compareTo(placeholder.info.left) == -1 || key.compareTo(placeholder.info.right) == 1) {
-                if (key.compareTo(placeholder.info) == 0) { // checking dupe within tree
-                    return;
-                }
-                if (key.compareTo(placeholder.info.left) == -1 || placeholder.left == null) {
-                    if (placeholder.left == null) {
-                        placeholder.left.info = key;
-                    } // if
-                    placeholder = placeholder.left;
-                } else if (key.compareTo(placeholder.info.right) == 1 || placeholder.right == null) {
-                    if (placeholder.right == null) {
-                        placeholder.right.info = key;
-                    }
-                    placeholder = placeholder.right;
-                }
-
+        if (key.compareTo(currentPos.info) >= 1) {
+            if (currentPos.right == null) {
+                currentPos.right = new NodeType<T>();
+                currentPos.right.info = key;
+                currentPos = root;
+            } else {
+                currentPos = currentPos.right;
+                insert(key);
             }
-        }
-        placeholder = root;
-    } // insert
+        } else if (key.compareTo(currentPos.info) <= -1) {
+            if (currentPos.left == null) {
+                currentPos.left = new NodeType<T>();
+                currentPos.left.info = key;
+                currentPos = root;
+            } else {
+                currentPos = currentPos.left;
+                insert(key);
+            }
+        } // else
+        return;
+    }
+
     /*
     public void delete(T key) {} // key
 
@@ -56,18 +53,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
     */
 
     public void inOrder(NodeType<T> root){
-        if (root.left == null) {
-            System.out.print(root.info + " ");
-            return;
-        } else {
-            inOrder(root.left);
-        }
+        if (root == null) return;
+        inOrder(root.left);
         System.out.print(root.info + " ");
-        if (root.right == null) {
-            System.out.print(root.info + " ");
-            return;
-        } else {
-            inOrder(root.right);
-        }
-    }
+        inOrder(root.right);
+    } // inOrder
+
 }

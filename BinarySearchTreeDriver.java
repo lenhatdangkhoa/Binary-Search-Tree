@@ -44,6 +44,7 @@ public class BinarySearchTreeDriver {
             command = scan.nextLine();
         } // while
         */
+        /*
         NodeType<Integer> root = new NodeType<>();
         root.info = 3;
         root.left = new NodeType<Integer>();
@@ -54,6 +55,7 @@ public class BinarySearchTreeDriver {
         root.right.left.info = 5;
         root.right.right = new NodeType<Integer>();
         root.right.right.info = 8;
+        */
         /*
         System.out.println(root.info);
         System.out.println(root.left.info);
@@ -62,10 +64,17 @@ public class BinarySearchTreeDriver {
         System.out.println(root.right.right.info);
         */
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        tree.root = root;
+        tree.root.info = 1;
+        tree.currentPos = tree.root;
+        tree.insert(2);
+        tree.insert(0);
+        tree.insert(3);
+        tree.insert(4);
+        //tree.insert(0);
         tree.inOrder(tree.root);
-        System.out.println();
-
+        //System.out.println(tree.root.info);
+        //System.out.println(tree.root.right.info);
+        //System.out.println(tree.root.left.info);
 
     } // main
 
