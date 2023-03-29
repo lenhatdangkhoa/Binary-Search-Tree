@@ -104,6 +104,21 @@ public class BinarySearchTree<T extends Comparable<T>> {
     } // getSingleParent
 
     /**
+     * Return the number of leaf nodes in the tree.
+     * @param root the root
+     * @param count the count
+     * @return the number of leaf nodes
+     */
+    public int getNumLeafNodes(NodeType<T> root, int count) {
+        if (root == null) {
+            return 0;
+        } else if (root.left == null && root.right == null) {
+            return 1;
+        } else {
+            return getNumLeafNodes(root.left, count) + getNumLeafNodes(root.right, count);
+        } //
+    }
+    /**
      * Perform In Order Traversal to print out the item in the tree in ascending order.
      */
     public void inOrder(NodeType<T> root) {
