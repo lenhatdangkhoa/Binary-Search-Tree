@@ -65,18 +65,22 @@ public class BinarySearchTreeDriver {
         */
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
         tree.root.info = 1;
-
         tree.insert(2);
         tree.insert(0);
-        //tree.insert(3);
-        //tree.insert(4);
-        //tree.insert(0);
-        tree.inOrder(tree.root);
-        System.out.println();
-        tree.delete(0);
-        System.out.println(tree.search(3));
+        tree.insert(3);
+        tree.insert(4);
+        tree.insert(10);
+        tree.insert(9);
+        tree.insert(11);
+        tree.insert(-3);
+        tree.insert(-1);
+        tree.insert(-2);
+        //tree.inOrder(tree.root);
+        //System.out.println();
+        tree.getSingleParent(tree.root);
+        //tree.delete(0);
+        //System.out.println(tree.search(3));
         //   tree.delete(2);
-        tree.inOrder(tree.root);
         //System.out.println(tree.root.left.info);
         //System.out.println(tree.search(2));
         //System.out.println(tree.search(10));

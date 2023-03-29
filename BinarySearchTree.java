@@ -86,7 +86,22 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return tracker;
     }
 
-
+    /**
+     * Prints out the node that has only one child.
+     * @param root the root
+     */
+    public void getSingleParent(NodeType<T> root) {
+        if (root == null) return;
+        else {
+            if (root.left != null && root.right == null) {
+                System.out.print(root.info + " ");
+            } else if (root.left == null && root.right != null) {
+                System.out.print(root.info + " ");
+            }
+        }
+        getSingleParent(root.left);
+        getSingleParent(root.right);
+    } // getSingleParent
 
     /**
      * Perform In Order Traversal to print out the item in the tree in ascending order.
