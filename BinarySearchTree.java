@@ -129,6 +129,13 @@ public class BinarySearchTree<T extends Comparable<T>> {
         inOrder(root.right);
     } // inOrder
 
+    /**
+     * A helper method for the getCousins.
+     * @param root the root
+     * @param level the level of the tree
+     * @param item the item
+     * @return the level of the item found
+     */
     private int getLevel(NodeType<T> root, int level, T item) {
         if (root == null) {
             return --level;
