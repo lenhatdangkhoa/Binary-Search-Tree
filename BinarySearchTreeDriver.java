@@ -81,7 +81,8 @@ public class BinarySearchTreeDriver {
         //tree.inOrder(tree.root);
         //System.out.println();
         //tree.getSingleParent(tree.root);
-        System.out.println(tree.getNumLeafNodes(tree.root, 0));
+        //System.out.println(tree.getNumLeafNodes(tree.root, 0));
+        //System.out.println(tree.getLevel(tree.root, 0,25));
         //tree.delete(0);
         //System.out.println(tree.search(3));
         //   tree.delete(2);

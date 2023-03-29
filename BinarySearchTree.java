@@ -120,6 +120,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
     /**
      * Perform In Order Traversal to print out the item in the tree in ascending order.
+     * @param root the root
      */
     public void inOrder(NodeType<T> root) {
         if (root == null) return;
@@ -127,5 +128,22 @@ public class BinarySearchTree<T extends Comparable<T>> {
         System.out.print(root.info + " ");
         inOrder(root.right);
     } // inOrder
+
+    private int getLevel(NodeType<T> root, int level, T item) {
+        if (root == null) {
+            return --level;
+        } else if (root.info.compareTo(item) == 0) {
+            return level;
+        } else {
+            if (item.compareTo(root.info) >= 1) {
+                return getLevel(root.right, level + 1, item);
+            }
+            if (item.compareTo(root.info) <= -1) {
+                return getLevel(root.left, level + 1, item);
+            } // if
+            return level;
+        }
+
+    } // getLevel
 
 }
