@@ -78,6 +78,8 @@ public class BinarySearchTreeDriver {
         tree.insert(7);
         tree.insert(11);
         tree.insert(25);
+        //System.out.println(tree.getParent(tree.root, 20));
+        tree.getCousins(tree.root, tree.getLevel(tree.root,0,10),10);
         //tree.inOrder(tree.root);
         //System.out.println();
         //tree.getSingleParent(tree.root);

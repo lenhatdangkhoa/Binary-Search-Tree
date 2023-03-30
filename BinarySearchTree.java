@@ -28,9 +28,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
         if (key.compareTo(root.info) >= 1) root.right = findPosition(root.right, key);
         return root;
     } //findPosition
-    /*
-    public void delete(T key) {} // key
-    */
 
     /**
      * Search for the item in the tree. Return true if the item exists, false otherwise.
@@ -75,9 +72,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
             NodeType<T> newNode = deleteMin(root.right);
             root.info = newNode.info;
             root.right = deleteHelper(root.right, newNode.info);
-            }
-        return root;
         }
+        return root;
+    }
 
     private NodeType<T> deleteMin(NodeType<T> tracker) {
         while (tracker.left != null) {
@@ -136,7 +133,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
      * @param item the item
      * @return the level of the item found
      */
-    private int getLevel(NodeType<T> root, int level, T item) {
+    public int getLevel(NodeType<T> root, int level, T item) {
         if (root == null) {
             return --level;
         } else if (root.info.compareTo(item) == 0) {
@@ -153,4 +150,27 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     } // getLevel
 
+    /**
+     * Print out of the cousins of a given node.
+     * @param root the root
+     * @param level the level of the item
+     * @param item the item
+     */
+    public void getCousins(NodeType<T> root, int level, T item) {
+        if (root == null) return;
+        if (root.left != null) {
+            if (root.left.info.compareTo(item) == 0) {
+                level++;
+                return;
+            } else getCousins(root.left, level - 1, item);
+        }
+        if (root.right != null) {
+            if (root.right.info.compareTo(item) == 0) {
+                level++;
+                return;
+            } else getCousins(root.right, level - 1, item);
+        }
+        if (level == 0) {System.out.println(root.info);}
+
+    } // getCousins
 }
