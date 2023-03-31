@@ -1,6 +1,10 @@
+/**
+ * The main BinarySearchTree generic class.
+ */
 public class BinarySearchTree<T extends Comparable<T>> {
     NodeType<T> root;
     boolean checker;
+    // Constructor
     public BinarySearchTree() {
         root = new NodeType<T>();
     }
@@ -9,7 +13,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
      * Insert the key at the correct position in the tree.
      */
     public void insert(T key) {
-        root = findPosition(root, key);
+        if (root.info == null) root.info = key;
+        else
+            root = findPosition(root, key);
     }
 
     /**
@@ -26,6 +32,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
         if (key.compareTo(root.info) <= -1) root.left = findPosition(root.left, key);
         if (key.compareTo(root.info) >= 1) root.right = findPosition(root.right, key);
+        if (key.compareTo(root.info) == 0) System.out.println("The item already exists in the tree.");
         return root;
     } //findPosition
 
@@ -43,7 +50,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
      * @param root the root
      * @param item the item
      * @return boolean true if exists, false otherwise
-     */
+    Show that if A and B are similar, then det A D det B */
     private boolean searchPosition(NodeType<T> root, T item) {
         if (root == null) return false;
         if (item.compareTo(root.info) <= -1) return searchPosition(root.left, item);
@@ -52,16 +59,26 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return false;
     } // searchPosition
 
+    /**
+     * Delete the given node.
+     * @param key the node to be deleted
+     */
     public void delete(T key) {
         root = deleteHelper(root, key);
     }
 
+    /**
+     * Traverse through the tree and delete the node.
+     * @param root the root of the tree
+     * @param key the key
+     * @return the root
+     */
     private NodeType<T> deleteHelper(NodeType<T> root, T key) {
         if (root == null) {
             return null;
         } if (key.compareTo(root.info) <= -1) {
             root.left = deleteHelper(root.left, key);
-        } if (key.compareTo(root.info) >= 1) {
+        } else if (key.compareTo(root.info) >= 1) {
             root.right = deleteHelper(root.right, key);
         } else {
             if (root.left == null) {
@@ -74,12 +91,16 @@ public class BinarySearchTree<T extends Comparable<T>> {
             root.right = deleteHelper(root.right, newNode.info);
         }
         return root;
+
     }
 
+    /**
+     * Delete the minimum node at the given node.
+     * @param tracker the node
+     * @return the smallest node
+     */
     private NodeType<T> deleteMin(NodeType<T> tracker) {
-        while (tracker.left != null) {
-            tracker = tracker.left;
-        }
+        while (tracker.left != null) tracker = tracker.left;
         return tracker;
     }
 
@@ -158,19 +179,14 @@ public class BinarySearchTree<T extends Comparable<T>> {
      */
     public void getCousins(NodeType<T> root, int level, T item) {
         if (root == null) return;
-        if (root.left != null) {
-            if (root.left.info.compareTo(item) == 0) {
-                level++;
-                return;
-            } else getCousins(root.left, level - 1, item);
+        if (root.left != null || root.right != null) {
+            if (root.left != null && root.left.info.compareTo(item) == 0) return;
+            else if (root.right != null && root.right.info.compareTo(item) == 0) return;
         }
-        if (root.right != null) {
-            if (root.right.info.compareTo(item) == 0) {
-                level++;
-                return;
-            } else getCousins(root.right, level - 1, item);
-        }
-        if (level == 0) {System.out.println(root.info);}
-
+        if (level == 0 && root.info.compareTo(item) != 0) System.out.print(root.info + " ");
+        else {
+            getCousins(root.left, level - 1, item);
+            getCousins(root.right, level -1, item);
+        } // else
     } // getCousins
 }

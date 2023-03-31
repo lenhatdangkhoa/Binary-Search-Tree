@@ -3,7 +3,7 @@ compile:
 	javac BinarySearchTree.java
 	javac BinarySearchTreeDriver.java
 run: compile
-	java BinarySearchTreeDriver
+	java BinarySearchTreeDriver test-files/string-input.txt
 clean:
 	rm NodeType.class
 	rm BinarySearchTree.class
